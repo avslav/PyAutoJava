@@ -48,64 +48,123 @@ class Java:
         except Exception as e:
             print(e)
 
-    def math(self, fullFileName, op, *nums):
-        
-        nums = list(nums)
-        ffn = fullFileName
-        
-        with open(ffn, "a") as jf:
-            towrite = []
-            for num, n in enumerate(nums):
-                if n != len(nums):
-                    towrite.append(f"{num} {op}")
-                elif n == len(nums):
-                    towrite.append(f"{num}")
-            written = towrite.join()
-            jf.write(written)
-            print("Added some math to your Java!")
+    ##################### VARIABLE CREATION ##################################
     
-    def createVar(self, fname, type, vname, *, value):
+    def createStr(self, filename, vname, *, value: str):
         
+        if "" not in value:
+            print("Error: Expecting string value for createStr().")
+        else:
+            pass
+
         try: 
             if filename.endswith(".java"):
                 fullFileName = self.filename
+            
+            else:
+                fullFileName = filename + ".java"
+                fullFileName.strip()
+            
+            with open(fullFileName, "a") as jf:
+                jf.write(f"\nString {vname} = \"{value}\";\n")
+                jf.close()
+       
+        except Exception as e:
+            print(e)
+
+    def createInt(self, filename, vname, *, value: int):
+
+        try: 
+            if filename.endswith(".java"):
+                fullFileName = self.filename
+            
+            else:
+                fullFileName = filename + ".java"
+                fullFileName.strip()
+            
+            with open(fullFileName, "a") as jf:
+                jf.write(f"\nint {vname} = {value};\n")
+                jf.close()
+        
+        except Exception as e:
+            print(e)
+    
+    def createFloat(self, filename, vname, *, value: float):
+
+        try: 
+            if filename.endswith(".java"):
+                fullFileName = self.filename
+            
+            else:
+                fullFileName = filename + ".java"
+                fullFileName.strip()
+            
+            with open(fullFileName, "a") as jf:
+                jf.write(f"\nfloat {vname} = {value}f;\n")
+                jf.close()
+        
+        except Exception as e:
+            print(e)
+    
+    def createDouble(self, filename, vname, *, value: float):
+
+        try: 
+            if filename.endswith(".java"):
+                fullFileName = self.filename
+            
+            else:
+                fullFileName = filename + ".java"
+                fullFileName.strip()
+            
+            with open(fullFileName, "a") as jf:
+                jf.write(f"\ndouble {vname} = {value};\n")
+                jf.close()
+        
+        except Exception as e:
+            print(e)
+    
+    def createBool(self, filename, vname, *, value: bool):
+
+        try: 
+            if filename.endswith(".java"):
+                fullFileName = self.filename
+            
             else:
                 fullFileName = filename + ".java"
                 fullFileName.strip()
             
             with open(fullFileName, "a") as jf:
                 
-                if type == "str":
-                    jf.write(f"String {vname} = {value}")
-                
-                elif type == "int":
-                    jf.write(f"int {vname} = {value}")
-                
-                elif type == "float":
-                    jf.write(f"float {vname} = {value}")
-                
-                elif type == "bool":
-                    jf.write(f"Boolean {vname} = {value}")
-                
-                else:
-                    print("Invalid variable type! Supported types: str, int, float, bool")
-
-            print(f"Created: Variable {vname} with value {value}")
+                if value:
+                    jf.write(f"\nboolean {vname} = true;\n")
+                else: 
+                    jf.write(f"\nboolean {vname} = false;\n")
+   
+                jf.close()
         
         except Exception as e:
             print(e)
 
-        
-        
-        
+       
 
-        
+    
+                
 
+#################### TESTING #########################
 
-
+# Init
 initJava("test")
 j = Java("test.java")
+
+# Functions
 j.printJava("hoho old chummy chum chum")
-#j.math("test.java", "+", 99, 1)
-j.createVar("test.java", "str", "testVar", "this is a variable")
+
+# Variables
+j.createStr("test", "testStr", value="this is a string")
+j.createInt("test", "testInt", value=60)
+j.createBool("test", "testBool", value=True)
+j.createFloat("test", "testFloat", value=2.0)
+j.createDouble("test", "testDouble", value=6.5)
+
+# Close
 closeJava("test")
