@@ -1,14 +1,21 @@
-def initJava(filename: str):
+def initJava(filename: str, *, create_main:bool=True):
         
         fullFileName = filename + ".java"
         fullFileName.strip()
 
         
         with open(fullFileName, "w") as jf:
+
+            if create_main:
             
-            jf.write("public class {}".format(filename))
-            jf.write("{")
-            jf.write("\n public static void main(String[] args) {")
+                jf.write("public class {}".format(filename))
+                jf.write("{")
+                jf.write("\n public static void main(String[] args) {")
+            
+            else:
+                jf.write("public class {}".format(filename))
+                jf.write("{")
+
             jf.close()
         
         return print(f"Created and initialized file {filename}.java successfully!")
@@ -165,7 +172,7 @@ class Java:
 #################### TESTING #########################
 
 # Init
-initJava("test")
+initJava("test", create_main=True)
 j = Java("test.java")
 
 # Functions
