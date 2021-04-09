@@ -13,23 +13,35 @@ def initJava(filename: str):
         
         return print(f"Created and initialized file {filename}.java successfully!")
 
-def closeJava(filename: str):
+def closeJava(filename: str, *, close_main: bool):
 
 
     fullFileName = filename + ".java"
     fullFileName.strip()
         
     with open(fullFileName, "a") as jf:
-            
-        jf.write("}")
-        jf.write("}")
+
+        if close_main:
+            jf.write("}")
+            jf.write("}")
+            print(f"Closed the superclass and the main function in file {filename}.java successfully!")
+        
+        else:
+            jf.write("}")
+            print(f"Closed the superclass in file {filename}.java successfully!")
+        
         jf.close()
         
-        return print(f"Closed the necesarry brackets in file {filename}.java successfully!")
+        
+
+
+
 
 class Java:
+    
     def __init__(self, filename):
         self.filename = filename
+    
     def printJava(self, args):
 
         try: 
@@ -145,7 +157,7 @@ class Java:
         except Exception as e:
             print(e)
 
-       
+#################### Meth Creation ###########################
 
     
                 
@@ -157,7 +169,7 @@ initJava("test")
 j = Java("test.java")
 
 # Functions
-j.printJava("hoho old chummy chum chum")
+j.printJava("hello")
 
 # Variables
 j.createStr("test", "testStr", value="this is a string")
@@ -167,4 +179,4 @@ j.createFloat("test", "testFloat", value=2.0)
 j.createDouble("test", "testDouble", value=6.5)
 
 # Close
-closeJava("test")
+closeJava("test", close_main=True)
