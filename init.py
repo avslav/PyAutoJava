@@ -1,18 +1,22 @@
+### INIT JAVA FILE SRC CODE ###
 import Variables.makevar
 from Variables.makevar import MakeVar
 
+# Init class
 class javaInit:
     def __init__(self, filename):
         self.filename = filename
 
     def initJava(self, filename: str, *, create_main:bool=True):
         
+        # Cleaning up the filename
         fullFileName = filename + ".java"
         fullFileName.strip()
 
         
         with open(fullFileName, "w") as jf:
-
+            
+            # Create main function if create_main bool is set to true
             if create_main:
             
                 jf.write("public class {}".format(filename))
@@ -46,7 +50,7 @@ class javaInit:
         
             jf.close()
         
-        
+    # Print function 
     def printJava(self, args):
 
         try: 
