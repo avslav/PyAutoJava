@@ -1,5 +1,6 @@
 # Imports may vary depending on your directory structure
-import init
+import src.init
+from src.init import javaInit
 import Variables.makevar 
 from Variables.makevar import MakeVar
 from init import javaInit
